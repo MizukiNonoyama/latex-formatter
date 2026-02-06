@@ -141,7 +141,7 @@ public class StructureUtils {
                             if (split[i].isEmpty()) {
                                 continue;
                             }
-                            temp += split[i] + (i + 1 < split.length ? " " : "");
+                            temp += split[i] + (i + 1 < split.length && isNeedSpace(split[i], split[i + 1]) ? " " : "");
                         }
                         split = temp.split("\t+");
                         String temp1 = "";
@@ -329,6 +329,14 @@ public class StructureUtils {
             }
         }
         return tempResult;
+    }
+
+    public static int getTrueLengthOfChar(char c) {
+        return ConfigManager.getInstance().getConfig().lineBreaks.getTrueLength(String.valueOf(c).getBytes(StandardCharsets.UTF_8).length);
+    }
+
+    public static boolean isNeedSpace(String first, String second) {
+        return getTrueLengthOfChar(first.charAt(first.length() - 1)) == 1 && getTrueLengthOfChar(second.charAt(0)) == 1;
     }
 
     public static int getTrueLength(String string) {
