@@ -336,7 +336,7 @@ public class StructureUtils {
     }
 
     public static boolean isNeedSpace(String first, String second) {
-        return getTrueLengthOfChar(first.charAt(first.length() - 1)) == 1 && getTrueLengthOfChar(second.charAt(0)) == 1;
+        return getTrueLengthOfChar(first.charAt(first.length() - 1)) == 1 || getTrueLengthOfChar(second.charAt(0)) == 1;
     }
 
     public static int getTrueLength(String string) {
